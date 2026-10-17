@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Production Build Output
+dist/
+dist-ssr/
+build/
+*.local
+
+# Vite & Bundler Cache
+.vite/
+**/.vite/
+.turbo/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# Editor & IDE Directories
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript Build Info Cache
+*.tsbuildinfo
+node_modules/.tmp/
+
+# OS & File System Junk (Windows / WSL / macOS)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Husky (abaikan internal cache, simpan hook definition)
+.husky/_/
+frontend/.husky/_/
