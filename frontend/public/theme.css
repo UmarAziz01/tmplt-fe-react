@@ -1,0 +1,39 @@
+/* Tema 1: GitHub Dark */
+.theme-github {
+  --bg-primary: #0d1117;
+  --bg-surface: #161b22;
+  --border-color: #30363d;
+  --text-main: #c9d1d9;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #1f6feb;
+}
+
+/* Tema 2: Cyberpunk Neon */
+.theme-cyberpunk {
+  --bg-primary: #080811;
+  --bg-surface: #120e24;
+  --border-color: #ff007f;
+  --text-main: #00f0ff;
+  --text-muted: #7957d5;
+  --accent: #ffe600;
+  --accent-hover: #ff007f;
+}
+
+/* Tema 3: Nord Clean */
+.theme-nord {
+  --bg-primary: #2e3440;
+  --bg-surface: #3b4252;
+  --border-color: #4c566a;
+  --text-main: #eceff4;
+  --text-muted: #d8dee9;
+  --accent: #88c0d0;
+  --accent-hover: #81a1c1;
+}
+
+/* Menerapkan variabel ke elemen umum */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

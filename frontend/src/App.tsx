@@ -3,31 +3,35 @@ import heroImg from "./assets/hero.png";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { ThemeSelector } from "@/components/ThemeSelector";
 
 function App() {
   const [count, setCount] = useState<number>(0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-main)] flex flex-col justify-between selection:bg-[var(--accent)] selection:text-white transition-colors duration-200">
       {/* Header */}
-      <header className="border-b border-slate-800/80 bg-slate-900/40 backdrop-blur sticky top-0 z-50">
+      <header className="border-b border-[var(--border-color)] bg-[var(--bg-surface)]/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={viteLogo} className="w-7 h-7" alt="Vite Logo" />
-            <span className="font-bold text-lg text-slate-100 tracking-tight notranslate">
+            <span className="font-bold text-lg text-[var(--text-main)] tracking-tight notranslate">
               React + Vite Starter
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* Dropdown Bahasa dengan Search */}
+          <div className="flex items-center gap-3">
+            {/* Tombol Switcher Tema */}
+            <ThemeSelector />
+
+            {/* Dropdown Bahasa */}
             <LanguageSelector />
 
             <a
               href="https://azizlab.my.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs sm:text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors notranslate"
+              className="text-xs sm:text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors notranslate"
             >
               azizlab.my.id
             </a>
@@ -37,13 +41,12 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-12 flex-1 w-full space-y-12">
-        {/* Hero Section */}
         <section className="text-center space-y-6">
           <div className="flex justify-center items-center gap-6">
             <a href="https://vite.dev" target="_blank" rel="noreferrer">
               <img
                 src={viteLogo}
-                className="w-16 h-16 hover:scale-110 transition-transform drop-shadow-[0_0_15px_rgba(100,108,255,0.4)]"
+                className="w-16 h-16 hover:scale-110 transition-transform"
                 alt="Vite logo"
               />
             </a>
@@ -55,7 +58,7 @@ function App() {
             <a href="https://react.dev" target="_blank" rel="noreferrer">
               <img
                 src={reactLogo}
-                className="w-16 h-16 animate-spin hover:scale-110 transition-transform drop-shadow-[0_0_15px_rgba(97,218,251,0.4)]"
+                className="w-16 h-16 animate-spin hover:scale-110 transition-transform"
                 style={{ animationDuration: "12s" }}
                 alt="React logo"
               />
@@ -63,48 +66,48 @@ function App() {
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--accent)]">
               Template Frontend React 19
             </h1>
-            <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
+            <p className="text-[var(--text-muted)] text-sm sm:text-base max-w-xl mx-auto">
               Template dasar siap pakai dengan Vite, Tailwind v4, React Router,
               dan TanStack Query.
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-4 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl shadow-inner">
-            <span className="text-sm font-mono text-slate-300">
+          <div className="inline-flex items-center gap-4 bg-[var(--bg-surface)] border border-[var(--border-color)] px-4 py-2 rounded-xl shadow-inner">
+            <span className="text-sm font-mono text-[var(--text-main)]">
               Counter State: {count}
             </span>
             <button
               type="button"
               onClick={() => setCount((prev) => prev + 1)}
-              className="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-600/20"
+              className="bg-[var(--accent)] hover:opacity-90 active:scale-95 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
             >
               Tambah +1
             </button>
           </div>
         </section>
 
-        {/* Documentation / Panduan Penggunaan */}
+        {/* Documentation Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">
+              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-sm">
                 1
               </div>
-              <h2 className="text-lg font-bold text-slate-100">
+              <h2 className="text-lg font-bold text-[var(--text-main)]">
                 Menambahkan Halaman (Routing)
               </h2>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Buat komponen halaman baru di dalam folder{" "}
-              <code className="text-indigo-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs font-mono notranslate">
+              <code className="text-[var(--accent)] bg-[var(--bg-primary)] px-1.5 py-0.5 rounded text-xs font-mono notranslate">
                 src/pages/
               </code>
               , lalu daftarkan route di file router utama.
             </p>
-            <div className="notranslate bg-slate-950 p-3 rounded-xl border border-slate-800/80 font-mono text-xs text-slate-300 overflow-x-auto">
+            <div className="notranslate bg-[var(--bg-primary)] p-3 rounded-xl border border-[var(--border-color)] font-mono text-xs text-[var(--text-main)] overflow-x-auto">
               <pre>{`// Contoh pendaftaran route:
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "@/pages/LoginPage";
@@ -118,27 +121,27 @@ import LoginPage from "@/pages/LoginPage";
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-sm">
+              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-sm">
                 2
               </div>
-              <h2 className="text-lg font-bold text-slate-100">
+              <h2 className="text-lg font-bold text-[var(--text-main)]">
                 Koneksi ke Backend & Proxy
               </h2>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Vite sudah memiliki reverse-proxy untuk path{" "}
-              <code className="text-emerald-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs font-mono notranslate">
+              <code className="text-[var(--accent)] bg-[var(--bg-primary)] px-1.5 py-0.5 rounded text-xs font-mono notranslate">
                 /api
               </code>
               . Set variabel target pada file{" "}
-              <code className="text-emerald-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs font-mono notranslate">
+              <code className="text-[var(--accent)] bg-[var(--bg-primary)] px-1.5 py-0.5 rounded text-xs font-mono notranslate">
                 .env
               </code>{" "}
               tanpa khawatir terkena isu CORS:
             </p>
-            <div className="notranslate bg-slate-950 p-3 rounded-xl border border-slate-800/80 font-mono text-xs text-slate-300 overflow-x-auto">
+            <div className="notranslate bg-[var(--bg-primary)] p-3 rounded-xl border border-[var(--border-color)] font-mono text-xs text-[var(--text-main)] overflow-x-auto">
               <pre>{`// .env
 VITE_API_TARGET=http://localhost:8080
 
@@ -148,45 +151,44 @@ const response = await axios.get("/api/v1/users");`}</pre>
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-sm">
+              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-sm">
                 3
               </div>
-              <h2 className="text-lg font-bold text-slate-100">
+              <h2 className="text-lg font-bold text-[var(--text-main)]">
                 Komponen UI & Styling
               </h2>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Komponen diletakkan di{" "}
-              <code className="text-sky-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs font-mono notranslate">
+              <code className="text-[var(--accent)] bg-[var(--bg-primary)] px-1.5 py-0.5 rounded text-xs font-mono notranslate">
                 src/components/
               </code>
-              . Styling menggunakan utility-first Tailwind CSS v4 tanpa perlu
-              konfigurasi JS manual.
+              . Styling menggunakan CSS Variables tema yang dinamis.
             </p>
-            <div className="notranslate bg-slate-950 p-3 rounded-xl border border-slate-800/80 font-mono text-xs text-slate-300 overflow-x-auto">
+            <div className="notranslate bg-[var(--bg-primary)] p-3 rounded-xl border border-[var(--border-color)] font-mono text-xs text-[var(--text-main)] overflow-x-auto">
               <pre>{`// Import alias @ sudah terkonfigurasi:
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";`}</pre>
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-sm">
+              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-sm">
                 4
               </div>
-              <h2 className="text-lg font-bold text-slate-100">
+              <h2 className="text-lg font-bold text-[var(--text-main)]">
                 Data Fetching & Global State
               </h2>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Gunakan <strong>TanStack Query</strong> untuk server-state
               fetching & caching, dan <strong>Zustand</strong> untuk
               client-state auth/session.
             </p>
-            <div className="notranslate bg-slate-950 p-3 rounded-xl border border-slate-800/80 font-mono text-xs text-slate-300 overflow-x-auto">
+            <div className="notranslate bg-[var(--bg-primary)] p-3 rounded-xl border border-[var(--border-color)] font-mono text-xs text-[var(--text-main)] overflow-x-auto">
               <pre>{`// Contoh query data dengan TanStack Query:
 const { data, isLoading } = useQuery({
   queryKey: ["profile"],
@@ -198,14 +200,14 @@ const { data, isLoading } = useQuery({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/60 py-6 text-center text-xs text-slate-500">
+      <footer className="border-t border-[var(--border-color)] bg-[var(--bg-surface)] py-6 text-center text-xs text-[var(--text-muted)]">
         <p>
           © {new Date().getFullYear()}{" "}
           <a
             href="https://azizlab.my.id"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 font-semibold hover:text-indigo-400 transition-colors underline decoration-slate-700 underline-offset-4 notranslate"
+            className="text-[var(--text-main)] font-semibold hover:text-[var(--accent)] transition-colors underline decoration-[var(--border-color)] underline-offset-4 notranslate"
           >
             Umar Abdul Aziz
           </a>
