@@ -3,7 +3,9 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
-/* Sembunyikan semua iframe banner & container Google Translate */
+/* ==========================================================================
+   1. GOOGLE TRANSLATE BANNER & TOOLTIP RESET
+   ========================================================================== */
 .VIpgJd-ZVi9kd-OR9Q11-OIDC9o,
 .goog-te-banner-frame,
 .skiptranslate:not(#google_translate_element),
@@ -16,14 +18,11 @@ iframe.goog-te-banner-frame {
   width: 0 !important;
 }
 
-/* Cegah Google Translate menurunkan posisi body */
-html,
-body {
+html, body {
   top: 0px !important;
   position: static !important;
 }
 
-/* Sembunyikan pop-up balloon / tooltip hover */
 #goog-gt-tt,
 .goog-te-balloon-frame {
   display: none !important;
@@ -34,346 +33,423 @@ body {
   box-shadow: none !important;
 }
 
-@layer base {
-  /* Standar modern (Firefox & browser berbasis Web Standards) */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #d4d4d8 transparent; /* thumb light mode */
-    @apply border-border outline-ring/50;
-  }
-
-  .dark * {
-    scrollbar-color: #3f3f46 transparent; /* thumb dark mode (zinc-700) */
-  }
-
-  /* WebKit (Chrome, Edge, Safari, Opera) */
-  *::-webkit-scrollbar {
-    width: 6px;  /* Lebar scrollbar vertikal */
-    height: 6px; /* Tinggi scrollbar horizontal */
-  }
-
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background-color: #d4d4d8; /* zinc-300 */
-    border-radius: 9999px;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #a1a1aa; /* zinc-400 */
-  }
-
-  /* Dark mode WebKit */
-  .dark *::-webkit-scrollbar-thumb {
-    background-color: #3f3f46; /* zinc-700 */
-  }
-
-  .dark *::-webkit-scrollbar-thumb:hover {
-    background-color: #52525b; /* zinc-600 */
-  }
-
-  /* Sudut pertemuan scrollbar vertikal & horizontal */
-  *::-webkit-scrollbar-corner {
-    background: transparent;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
-}
-
+/* ==========================================================================
+   2. SHADCN / TAILWIND DESIGN TOKENS
+   ========================================================================== */
 @custom-variant dark (&:is(.dark *));
 
-/* :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-} */
-
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+  --font-heading: var(--font-family-heading);
+  --font-sans: var(--font-family-body);
 
-    /* Override palette zinc dengan CSS variables untuk mode-aware control.
-       Default Tailwind: zinc-700=oklch(.37), zinc-800=oklch(.274) — border tipis di atas bg-zinc-950.
-       Dark mode di .dark block men-override zinc-700/800 agar lebih kontras. */
-
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+  --color-border: var(--border-color);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-ring: var(--ring);
 }
 
+/* ==========================================================================
+   3. GLOBAL TOKENS & DEFAULT SPACING/LAYOUT
+   ========================================================================== */
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+  /* Default Dynamic Accent */
+  --theme-primary: #2563eb;
+  --primary: #2563eb;
+  --accent: #2563eb;
+  --ring: #2563eb;
+
+  /* Spacing & Layout Tokens (Default) */
+  --spacing-container-max: 64rem;
+  --spacing-section-gap: 4rem;
+  --spacing-card-pad: 2rem;
+  --spacing-card-gap: 2rem;
+  --border-width: 1px;
+  --radius-card: 16px;
+  --radius-btn: 10px;
+  --card-shadow: none;
+
+  /* Font defaults */
+  --font-family-heading: 'Geist Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-body: 'Geist Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --heading-weight: 700;
+  --heading-tracking: -0.025em;
+
+  /* Light Canvas Baseline */
+  --bg-primary: #ffffff;
+  --bg-surface: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+  --scrollbar-track: rgba(241, 245, 249, 0.6);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+  /* Dark Canvas Baseline */
+  --bg-primary: #09090b;
+  --bg-surface: #18181b;
+  --border-color: #27272a;
+  --text-main: #f8fafc;
+  --text-muted: #a1a1aa;
 
-    /* Override zinc shades HANYA untuk text/border. Background zinc
-       (bg-zinc-50/100/200 untuk light, bg-zinc-800/900/950 untuk dark) tetap
-       default Tailwind agar tidak mengubah warna halaman.
-       zinc-800 tetap default karena dipakai bg hover/footer di dark mode. */
-    --color-zinc-300: #66667A;
-    --color-zinc-400: #66667A;
-    --color-zinc-500: #66667A;
-    --color-zinc-600: #66667A;
-    --color-zinc-700: #66667A;
+  --scrollbar-thumb: #3f3f46;
+  --scrollbar-thumb-hover: #52525b;
+  --scrollbar-track: rgba(24, 24, 27, 0.6);
 }
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
-  html {
-    @apply font-sans;
-    }
-}
-
 
 /* ==========================================================================
-   CSS VARIABLES FOR THEMES (Custom Markdown / Color Themes)
+   4. BREADTH OF THEMES (SPACING, FONT, LAYOUT, AND CONTRAST MATRICES)
    ========================================================================== */
 
-/* Default / Tema 1: GitHub Dark */
-:root,
+/* --- A. SUBFRAME (Editorial Serif / Generous Spacing / Elegant Contrast) --- */
+.theme-subframe {
+  --bg-primary: #fcfbf9;
+  --bg-surface: #f4f1ea;
+  --border-color: #e4dfd5;
+  --border-width: 1px;
+  --text-main: #1c1917;
+  --text-muted: #78716c;
+  --radius-card: 20px;
+  --radius-btn: 9999px;
+  --font-family-heading: 'Instrument Serif', Georgia, serif;
+  --font-family-body: 'Inter', sans-serif;
+  --heading-weight: 400;
+  --heading-tracking: -0.01em;
+  --spacing-container-max: 60rem;
+  --spacing-section-gap: 5rem;
+  --spacing-card-pad: 2.5rem;
+  --spacing-card-gap: 2rem;
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+.dark.theme-subframe, .dark .theme-subframe {
+  --bg-primary: #121110;
+  --bg-surface: #1c1b18;
+  --border-color: #2e2c28;
+  --text-main: #f5f5f4;
+  --text-muted: #a8a29e;
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+/* --- B. DALA (Void Minimal / Borderless / Extreme Radius) --- */
+.theme-dala, .dark.theme-dala, .dark .theme-dala {
+  --bg-primary: #000000;
+  --bg-surface: #0d0d0d;
+  --border-color: transparent;
+  --border-width: 0px;
+  --text-main: #ffffff;
+  --text-muted: #888888;
+  --radius-card: 32px;
+  --radius-btn: 9999px;
+  --font-family-heading: 'Inter', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  --heading-weight: 500;
+  --heading-tracking: -0.04em;
+  --spacing-container-max: 68rem;
+  --spacing-section-gap: 6rem;
+  --spacing-card-pad: 3rem;
+  --spacing-card-gap: 2.5rem;
+  --card-shadow: none;
+}
+
+/* --- C. MERCURY (Alpine Executive / Tight Spacing / Pill Controls) --- */
+.theme-mercury {
+  --bg-primary: #f1f3f9;
+  --bg-surface: #ffffff;
+  --border-color: #dbe0ea;
+  --border-width: 1px;
+  --text-main: #11142d;
+  --text-muted: #6b7280;
+  --radius-card: 14px;
+  --radius-btn: 28px;
+  --font-family-heading: 'Inter', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  --heading-weight: 600;
+  --heading-tracking: 0.01em;
+  --spacing-container-max: 64rem;
+  --spacing-section-gap: 3.5rem;
+  --spacing-card-pad: 1.75rem;
+  --spacing-card-gap: 1.5rem;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.dark.theme-mercury, .dark .theme-mercury {
+  --bg-primary: #11121a;
+  --bg-surface: #1a1b26;
+  --border-color: #27293d;
+  --border-width: 1px;
+  --text-main: #f0f2fa;
+  --text-muted: #8b92a5;
+}
+
+/* --- D. SHADCN/UI (Clinical Precision / Hairline / Monospaced Touch) --- */
+.theme-shadcn-ui {
+  --bg-primary: #ffffff;
+  --bg-surface: #fafafa;
+  --border-color: #e4e4e7;
+  --border-width: 1px;
+  --text-main: #09090b;
+  --text-muted: #71717a;
+  --radius-card: 8px;
+  --radius-btn: 6px;
+  --font-family-heading: 'Geist Variable', sans-serif;
+  --font-family-body: 'Geist Variable', sans-serif;
+  --heading-weight: 600;
+  --heading-tracking: -0.04em;
+  --spacing-container-max: 62rem;
+  --spacing-section-gap: 3rem;
+  --spacing-card-pad: 1.5rem;
+  --spacing-card-gap: 1.25rem;
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.dark.theme-shadcn-ui, .dark .theme-shadcn-ui {
+  --bg-primary: #09090b;
+  --bg-surface: #121215;
+  --border-color: #27272a;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* --- E. GITHUB --- */
 .theme-github {
+  --bg-primary: #ffffff;
+  --bg-surface: #f6f8fa;
+  --border-color: #d0d7de;
+  --text-main: #1f2328;
+  --text-muted: #656d76;
+  --radius-card: 6px;
+  --radius-btn: 6px;
+}
+.dark.theme-github, .dark .theme-github {
   --bg-primary: #0d1117;
   --bg-surface: #161b22;
   --border-color: #30363d;
-  --text-main: #c9d1d9;
-  --text-muted: #8b949e;
-  --accent: #58a6ff;
-  --accent-hover: #1f6feb;
+  --text-main: #e6edf3;
+  --text-muted: #848d97;
 }
 
-/* Tema 2: Cyberpunk Neon */
-.theme-cyberpunk {
-  --bg-primary: #080811;
-  --bg-surface: #120e24;
-  --border-color: #ff007f;
-  --text-main: #00f0ff;
-  --text-muted: #a78bfa;
-  --accent: #ffe600;
-  --accent-hover: #ff007f;
-}
-
-/* Tema 3: Nord Frost */
+/* --- F. NORD FROST --- */
 .theme-nord {
+  --bg-primary: #eceff4;
+  --bg-surface: #e5e9f0;
+  --border-color: #d8dee9;
+  --text-main: #2e3440;
+  --text-muted: #4c566a;
+  --radius-card: 16px;
+  --radius-btn: 8px;
+}
+.dark.theme-nord, .dark .theme-nord {
   --bg-primary: #2e3440;
   --bg-surface: #3b4252;
   --border-color: #4c566a;
   --text-main: #eceff4;
   --text-muted: #d8dee9;
-  --accent: #88c0d0;
-  --accent-hover: #81a1c1;
+}
+
+/* --- G. TOKYO NIGHT --- */
+.theme-tokyo-night {
+  --bg-primary: #e6e9ef;
+  --bg-surface: #dce0e8;
+  --border-color: #bcc0cc;
+  --text-main: #343b58;
+  --text-muted: #6c6f85;
+}
+.dark.theme-tokyo-night, .dark .theme-tokyo-night {
+  --bg-primary: #1a1b26;
+  --bg-surface: #24283b;
+  --border-color: #2f354a;
+  --text-main: #c0caf5;
+  --text-muted: #7aa2f7;
+}
+
+/* --- H. CATPPUCCIN --- */
+.theme-catppuccin {
+  --bg-primary: #eff1f5;
+  --bg-surface: #e6e9ef;
+  --border-color: #ccd0da;
+  --text-main: #4c4f69;
+  --text-muted: #7c7f93;
+}
+.dark.theme-catppuccin, .dark .theme-catppuccin {
+  --bg-primary: #24273a;
+  --bg-surface: #1e2030;
+  --border-color: #363a4f;
+  --text-main: #cad3f5;
+  --text-muted: #8087a2;
+}
+
+/* --- I. DRACULA --- */
+.theme-dracula {
+  --bg-primary: #f8f8f2;
+  --bg-surface: #eaeaf4;
+  --border-color: #d1d5db;
+  --text-main: #282a36;
+  --text-muted: #6272a4;
+}
+.dark.theme-dracula, .dark .theme-dracula {
+  --bg-primary: #282a36;
+  --bg-surface: #343746;
+  --border-color: #44475a;
+  --text-main: #f8f8f2;
+  --text-muted: #6272a4;
+}
+
+/* --- J. ROSE PINE --- */
+.theme-rose-pine {
+  --bg-primary: #faf4ed;
+  --bg-surface: #fffaf3;
+  --border-color: #cecacd;
+  --text-main: #575279;
+  --text-muted: #797593;
+}
+.dark.theme-rose-pine, .dark .theme-rose-pine {
+  --bg-primary: #191724;
+  --bg-surface: #1f1d2e;
+  --border-color: #26233a;
+  --text-main: #e0def4;
+  --text-muted: #908caa;
+}
+
+/* --- K. ONE DARK --- */
+.theme-one-dark {
+  --bg-primary: #fafafa;
+  --bg-surface: #f0f0f0;
+  --border-color: #e0e0e0;
+  --text-main: #383a42;
+  --text-muted: #a0a1a7;
+}
+.dark.theme-one-dark, .dark .theme-one-dark {
+  --bg-primary: #21252b;
+  --bg-surface: #282c34;
+  --border-color: #3a3f4b;
+  --text-main: #abb2bf;
+  --text-muted: #5c6370;
+}
+
+/* --- L. SOLARIZED --- */
+.theme-solarized {
+  --bg-primary: #fdf6e3;
+  --bg-surface: #eee8d5;
+  --border-color: #d3d0c2;
+  --text-main: #657b83;
+  --text-muted: #93a1a1;
+}
+.dark.theme-solarized, .dark .theme-solarized {
+  --bg-primary: #002b36;
+  --bg-surface: #073642;
+  --border-color: #124957;
+  --text-main: #839496;
+  --text-muted: #586e75;
+}
+
+/* --- M. EVERFOREST --- */
+.theme-everforest {
+  --bg-primary: #fdf6e3;
+  --bg-surface: #efebd4;
+  --border-color: #e0dcc7;
+  --text-main: #5c6a72;
+  --text-muted: #939f91;
+}
+.dark.theme-everforest, .dark .theme-everforest {
+  --bg-primary: #2d353b;
+  --bg-surface: #343f44;
+  --border-color: #3d484d;
+  --text-main: #d3c6aa;
+  --text-muted: #7fbbb3;
+}
+
+/* --- N. GRUVBOX --- */
+.theme-gruvbox {
+  --bg-primary: #fbf1c7;
+  --bg-surface: #ebdbb2;
+  --border-color: #d5c4a1;
+  --text-main: #3c3836;
+  --text-muted: #7c6f64;
+}
+.dark.theme-gruvbox, .dark .theme-gruvbox {
+  --bg-primary: #1d2021;
+  --bg-surface: #282828;
+  --border-color: #3c3836;
+  --text-main: #ebdbb2;
+  --text-muted: #928374;
+}
+
+/* --- O. HORIZON --- */
+.theme-horizon {
+  --bg-primary: #fdf0ed;
+  --bg-surface: #fadad4;
+  --border-color: #f4b6aa;
+  --text-main: #403635;
+  --text-muted: #8a716e;
+}
+.dark.theme-horizon, .dark .theme-horizon {
+  --bg-primary: #1c1e26;
+  --bg-surface: #232530;
+  --border-color: #2e303e;
+  --text-main: #d5d8da;
+  --text-muted: #6c6f93;
+}
+
+/* --- P. EMERALD SLATE --- */
+.theme-emerald {
+  --bg-primary: #f8fafc;
+  --bg-surface: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+.dark.theme-emerald, .dark .theme-emerald {
+  --bg-primary: #061512;
+  --bg-surface: #0a231f;
+  --border-color: #113831;
+  --text-main: #e6f4f1;
+  --text-muted: #5e8e84;
+}
+
+/* ==========================================================================
+   5. AESTHETIC SCROLLBAR
+   ========================================================================== */
+html, body, * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  display: block;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   6. BASE RESET
+   ========================================================================== */
+@layer base {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
 }

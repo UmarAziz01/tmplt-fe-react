@@ -1,25 +1,127 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://dashboardicons.com/pb/api/files/community_gallery/2e5s1n2oakirymr/letter_a_light_b9gxuewb8p.svg" />
-    <link rel="stylesheet" href="/themes.css" />
+    <link rel="icon" type="image/svg+xml" href="%VITE_FAVICON_URL%" />
+    <link rel="apple-touch-icon" href="%VITE_FAVICON_URL%" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+
+    <!-- SEO & Search Console Basics -->
+    <title>%VITE_APP_NAME%</title>
+    <meta name="description" content="%VITE_APP_DESCRIPTION%" />
+    <link rel="canonical" href="%VITE_APP_URL%" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%VITE_APP_URL%" />
+    <meta property="og:title" content="%VITE_APP_NAME%" />
+    <meta property="og:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta property="og:image" content="%VITE_OG_IMAGE%" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="%VITE_APP_URL%" />
+    <meta name="twitter:title" content="%VITE_APP_NAME%" />
+    <meta name="twitter:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="twitter:image" content="%VITE_OG_IMAGE%" />
+
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- Google Fonts: Instrument Serif & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+      (function () {
+        try {
+          var THEME_STYLE_KEY = "app-theme";
+          var THEME_MODE_KEY = "onegate-ui-theme";
+          var ACCENT_PRESET_KEY = "onegate-theme-preset";
+          var ACCENT_CUSTOM_KEY = "onegate-custom-primary";
+          var ACCENT_PRESETS = {
+            zinc: "#66667A",
+            blue: "#2563eb",
+            emerald: "#16a34a",
+            violet: "#7c3aed",
+            amber: "#f59e0b",
+            rose: "#e11d48",
+          };
+          var DEFAULT_ACCENT = "#2563eb";
+          var DARK_BG = "#09090b";
+          var LIGHT_BG = "#ffffff";
+
+          var root = document.documentElement;
+
+          // === 1. Structural / Layout Theme Class ===
+          var savedStyleTheme = localStorage.getItem(THEME_STYLE_KEY) || "theme-subframe";
+          root.classList.add(savedStyleTheme);
+
+          // === 2. Dark / Light Mode ===
+          var stored = localStorage.getItem(THEME_MODE_KEY);
+          var systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var isDark = stored === "dark" || (!stored && systemDark) || (stored === "system" && systemDark);
+
+          if (isDark) {
+            root.classList.add("dark");
+            root.classList.remove("light");
+          } else {
+            root.classList.remove("dark");
+            root.classList.add("light");
+          }
+          root.style.backgroundColor = isDark ? DARK_BG : LIGHT_BG;
+          root.style.colorScheme = isDark ? "dark" : "light";
+          root.setAttribute("data-theme", isDark ? "dark" : "light");
+
+          // === 3. Accent Color ===
+          var accentStored = localStorage.getItem(ACCENT_PRESET_KEY);
+          var accentCustom = localStorage.getItem(ACCENT_CUSTOM_KEY);
+          var accent;
+          if (accentStored === "custom" && accentCustom) {
+            accent = accentCustom;
+          } else if (accentStored && ACCENT_PRESETS[accentStored]) {
+            accent = ACCENT_PRESETS[accentStored];
+          } else {
+            accent = DEFAULT_ACCENT;
+          }
+          root.style.setProperty("--theme-primary", accent);
+          root.style.setProperty("--primary", accent);
+          root.style.setProperty("--accent", accent);
+          root.style.setProperty("--ring", accent);
+        } catch (_) {}
+      })();
+    </script>
+
+    <style>
+      html.dark,
+      html.dark body {
+        background-color: #09090b !important;
+        color-scheme: dark;
+      }
+      html:not(.dark),
+      html:not(.dark) body {
+        background-color: #ffffff;
+        color-scheme: light;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <div id="google_translate_element" style="display: none;"></div>
 
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'id',
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- Google Translate Container & Script Initialization -->
+    <div id="google_translate_element" style="display: none;"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'id',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

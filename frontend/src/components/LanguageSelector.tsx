@@ -44,7 +44,6 @@ function getActiveLanguage(): string {
   return "id";
 }
 
-// Utility terisolasi di luar komponen agar lolos linting react-hooks/immutability
 function setGoogleTranslateCookie(code: string) {
   const cookieValue = `/id/${code}`;
   document.cookie = `googtrans=${cookieValue}; path=/;`;
@@ -73,7 +72,7 @@ export function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Autofocus tanpa memicu setState di dalam effect
+  // Autofocus input pencarian saat dropdown terbuka
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -118,12 +117,12 @@ export function LanguageSelector() {
       <button
         type="button"
         onClick={handleOpenToggle}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 hover:border-slate-700 hover:bg-slate-800/80 transition-all text-xs font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] hover:border-[var(--accent)] transition-all text-xs font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40 cursor-pointer"
       >
         <span className="text-base leading-none">{currentLang.flag}</span>
         <span>{currentLang.native}</span>
         <svg
-          className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+          className={`w-3.5 h-3.5 text-[var(--text-muted)] transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
           fill="none"
@@ -141,11 +140,11 @@ export function LanguageSelector() {
 
       {/* Dropdown Panel */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-md border border-slate-800 rounded-2xl shadow-2xl p-2 z-50">
+        <div className="absolute right-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl shadow-2xl p-2 z-50">
           {/* Search Box */}
           <div className="relative mb-2">
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-muted)]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -162,15 +161,15 @@ export function LanguageSelector() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search language..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+              placeholder="Cari bahasa..."
+              className="w-full bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             />
           </div>
 
           {/* Language Options List */}
           <div className="max-h-60 overflow-y-auto space-y-0.5 pr-1">
             {filteredLanguages.length === 0 ? (
-              <div className="py-4 text-center text-xs text-slate-500">
+              <div className="py-4 text-center text-xs text-[var(--text-muted)]">
                 Bahasa tidak ditemukan
               </div>
             ) : (
@@ -181,10 +180,10 @@ export function LanguageSelector() {
                     key={lang.code}
                     type="button"
                     onClick={() => handleSelect(lang.code)}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors text-left ${
+                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors text-left cursor-pointer ${
                       isSelected
-                        ? "bg-indigo-600/20 text-indigo-300 font-semibold"
-                        : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                        ? "bg-[var(--accent)] text-white font-semibold shadow-sm"
+                        : "text-[var(--text-main)] hover:bg-[var(--bg-primary)]"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
@@ -193,13 +192,19 @@ export function LanguageSelector() {
                       </span>
                       <div className="truncate">
                         <span className="block truncate">{lang.native}</span>
-                        <span className="text-[10px] text-slate-500 block">
+                        <span
+                          className={`text-[10px] block truncate ${
+                            isSelected
+                              ? "text-white/80"
+                              : "text-[var(--text-muted)]"
+                          }`}
+                        >
                           {lang.name}
                         </span>
                       </div>
                     </div>
                     {isSelected && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
                     )}
                   </button>
                 );
