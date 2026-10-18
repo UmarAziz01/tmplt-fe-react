@@ -3,6 +3,37 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+/* Sembunyikan semua iframe banner & container Google Translate */
+.VIpgJd-ZVi9kd-OR9Q11-OIDC9o,
+.goog-te-banner-frame,
+.skiptranslate:not(#google_translate_element),
+iframe[id*=":1.container"],
+iframe[id*=":2.container"],
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+/* Cegah Google Translate menurunkan posisi body */
+html,
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Sembunyikan pop-up balloon / tooltip hover */
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
 @layer base {
   /* Standar modern (Firefox & browser berbasis Web Standards) */
   * {
