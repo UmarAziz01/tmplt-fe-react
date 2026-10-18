@@ -5,7 +5,7 @@ import viteLogo from "./assets/vite.svg";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { ThemeSelector } from "@/components/ThemeSelector";
 import { AccentSelector } from "@/components/ColorSelector";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ModeSelector } from "@/components/ModeSelector";
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -41,7 +41,7 @@ function App() {
 
           {/* Action Bar: Dark Mode, Color Accent, Layout Theme, Language */}
           <div className="flex items-center gap-2.5">
-            <ThemeToggle />
+            <ModeSelector />
             <AccentSelector />
             <ThemeSelector />
             <LanguageSelector />

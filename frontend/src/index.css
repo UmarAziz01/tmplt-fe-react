@@ -133,13 +133,13 @@ html, body {
 }
 
 /* --- B. DALA (Void Minimal / Borderless / Extreme Radius) --- */
-.theme-dala, .dark.theme-dala, .dark .theme-dala {
-  --bg-primary: #000000;
-  --bg-surface: #0d0d0d;
+.theme-dala {
+  --bg-primary: #f7f7f8;
+  --bg-surface: #ffffff;
   --border-color: transparent;
   --border-width: 0px;
-  --text-main: #ffffff;
-  --text-muted: #888888;
+  --text-main: #09090b;
+  --text-muted: #71717a;
   --radius-card: 32px;
   --radius-btn: 9999px;
   --font-family-heading: 'Inter', sans-serif;
@@ -150,6 +150,18 @@ html, body {
   --spacing-section-gap: 6rem;
   --spacing-card-pad: 3rem;
   --spacing-card-gap: 2.5rem;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+}
+
+/* 2. Dark Mode (Pure void black) */
+.dark.theme-dala,
+.dark .theme-dala {
+  --bg-primary: #000000;
+  --bg-surface: #0d0d0d;
+  --border-color: transparent;
+  --border-width: 0px;
+  --text-main: #ffffff;
+  --text-muted: #888888;
   --card-shadow: none;
 }
 

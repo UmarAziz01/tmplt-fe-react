@@ -1,10 +1,13 @@
+// src/hooks/useMode.ts
 import { useState, useEffect } from "react";
 
-export function useDarkMode() {
+const STORAGE_KEY = "app-dark-mode";
+
+export function useMode() {
   const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window === "undefined") return true;
-    const stored = localStorage.getItem("app-color-scheme");
-    if (stored) return stored === "dark";
+    if (typeof window === "undefined") return false;
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored !== null) return stored === "true";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
@@ -12,11 +15,12 @@ export function useDarkMode() {
     const root = document.documentElement;
     if (isDark) {
       root.classList.add("dark");
-      localStorage.setItem("app-color-scheme", "dark");
+      root.classList.remove("light");
     } else {
       root.classList.remove("dark");
-      localStorage.setItem("app-color-scheme", "light");
+      root.classList.add("light");
     }
+    localStorage.setItem(STORAGE_KEY, String(isDark));
   }, [isDark]);
 
   const toggle = () => setIsDark((prev) => !prev);
